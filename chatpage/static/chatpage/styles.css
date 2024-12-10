@@ -1,29 +1,65 @@
 body {  
-    font-family: Arial, sans-serif;  
-    background-color: #f4f4f4;  
+    font-family: 'Arial', sans-serif;  
+    background-color: #4A90E2; /* Soft blue background */  
     margin: 0;  
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    height: 100vh;  
 }  
+
 .chat-container {  
     width: 400px;  
-    margin: 50px auto;  
-    border: 1px solid #ccc;  
-    background: white;  
-    border-radius: 5px;  
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);  
+    background: #FFFFFF; /* White background for chat box */  
+    border-radius: 10px;  
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  
+    overflow: hidden;  
 }  
+
 .chat-box {  
     height: 300px;  
     overflow-y: auto;  
-    padding: 10px;  
-    border-bottom: 1px solid #ccc;  
+    padding: 20px;  
+    border-bottom: 2px solid #4A90E2; /* Blue border */  
+    background-color: #F0F4F8; /* Light gray background */  
 }  
+
 .chat-box div {  
-    margin: 5px 0;  
+    margin: 10px 0;  
+    padding: 10px;  
+    border-radius: 8px;  
 }  
+
+.chat-box .user {  
+    background-color: #A2D5F2; /* Light blue for user messages */  
+    align-self: flex-end;  
+    text-align: right;  
+}  
+
+.chat-box .gemini {  
+    background-color: #D5E6D1; /* Light green for Gemini messages */  
+    align-self: flex-start;  
+    text-align: left;  
+}  
+
 #user-input {  
     width: calc(100% - 100px);  
-    padding: 10px;  
+    padding: 15px;  
+    border: 1px solid #ccc;  
+    border-radius: 5px;  
+    margin: 10px;  
 }  
+
 #send-button {  
-    padding: 10px;  
+    padding: 15px;  
+    background-color: #4A90E2; /* Blue button */  
+    color: white;  
+    border: none;  
+    border-radius: 5px;  
+    cursor: pointer;  
+    transition: background-color 0.3s;  
+}  
+
+#send-button:hover {  
+    background-color: #357ABD; /* Darker blue on hover */  
 }

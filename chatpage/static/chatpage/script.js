@@ -2,7 +2,10 @@ document.getElementById('send-button').onclick = function() {
     var userMessage = document.getElementById('user-input').value;  
     document.getElementById('user-input').value = '';  
 
-    document.getElementById('chat-box').innerHTML += '<div>You: ' + userMessage + '</div>';  
+    // Display user message  
+    document.getElementById('chat-box').innerHTML += `  
+        <div class="user">You: ${userMessage}</div>  
+    `;  
 
     fetch('/chat/', {  
         method: 'POST',  
@@ -12,9 +15,15 @@ document.getElementById('send-button').onclick = function() {
         },  
         body: 'message=' + encodeURIComponent(userMessage)  
     })  
+    
     .then(response => response.json())  
     .then(data => {  
-        document.getElementById('chat-box').innerHTML += '<div>Gemini: ' + data.reply + '</div>';  
+        // Display Gemini's reply  
+        document.getElementById('chat-box').innerHTML += `  
+            <div class="gemini">Gemini: ${data.reply}</div>  
+        `;  
+        // Scroll to the bottom of the chat box  
+        document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;  
     });  
 };  
 

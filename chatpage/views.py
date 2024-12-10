@@ -1,21 +1,31 @@
 import requests  
 from django.shortcuts import render  
 from django.http import JsonResponse  
+from google import generativeai as ai
 
 # Replace with your actual Gemini API endpoint and key  
-GEMINI_API_URL = 'https://api.gemini.ai/v1/chat'  
-API_KEY = ''  
+API_KEY = 'AIzaSyDbZidlVCGu1WFA7KBclXxqh1Dxcxs5Dcg'  
+
+def print_hash():
+    return '######################################\n'
 
 def chat_view(request):  
     if request.method == 'POST':  
-        user_message = request.POST.get('message')  
-        response = requests.post(GEMINI_API_URL, json={  
-            'message': user_message,  
-            'apiKey': API_KEY  
-        })  
+        try:
+            user_message = request.POST.get('message')  
+            print(print_hash(), f"\nuser_message: {user_message}\n", print_hash())
 
-        data = response.json()  
-        bot_reply = data.get('reply', 'Sorry, something went wrong.')  
-        return JsonResponse({'reply': bot_reply})  
+            ai.configure(api_key=API_KEY)
+            model = ai.GenerativeModel("gemini-1.5-flash")
+            response = model.generate_content(user_message) 
+            print(print_hash(), f"\nresponse: {response.__dict__}\n", print_hash())
+            
+            # Handle the response directly without json conversion
+            bot_reply = response.text if hasattr(response, 'text') else 'Sorry, something went wrong.'
+            return JsonResponse({'reply': bot_reply})
+            
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return JsonResponse({'reply': 'Sorry, there was an error processing your request. Please check your API key and try again.'}, status=403)
 
     return render(request, 'chatpage/chat.html')
