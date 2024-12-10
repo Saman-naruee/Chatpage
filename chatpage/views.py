@@ -1,11 +1,10 @@
 import requests  
 from django.shortcuts import render  
 from django.http import JsonResponse  
-from decouple import config
 
 # Replace with your actual Gemini API endpoint and key  
 GEMINI_API_URL = 'https://api.gemini.ai/v1/chat'  
-API_KEY = config('API_KEY')   
+API_KEY = ''  
 
 def chat_view(request):  
     if request.method == 'POST':  
