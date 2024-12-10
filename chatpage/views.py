@@ -13,13 +13,10 @@ def chat_view(request):
     if request.method == 'POST':  
         try:
             user_message = request.POST.get('message')  
-            print(print_hash(), f"\nuser_message: {user_message}\n", print_hash())
-
             ai.configure(api_key=API_KEY)
             model = ai.GenerativeModel("gemini-1.5-flash")
             response = model.generate_content(user_message) 
-            print(print_hash(), f"\nresponse: {response.__dict__}\n", print_hash())
-            
+                        
             # Handle the response directly without json conversion
             bot_reply = response.text if hasattr(response, 'text') else 'Sorry, something went wrong.'
             return JsonResponse({'reply': bot_reply})

@@ -9,12 +9,17 @@ body {
 }  
 
 .chat-container {  
-    width: 400px;  
+    width: 100%; /* This will allow it to grow larger */  
+    min-width: 300px; /* Minimum width */  
+    max-width: 1800px; /* Maximum width */  
+    height: auto; /* Allow height to adjust dynamically */  
     background: #FFFFFF; /* White background for chat box */  
     border-radius: 10px;  
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  
     overflow: hidden;  
-}  
+    resize: both; /* Allow both horizontal and vertical resizing */  
+    position: relative; /* Positioning context for resizing */  
+}
 
 .chat-box {  
     height: 300px;  
@@ -37,10 +42,11 @@ body {
 }  
 
 .chat-box .gemini {  
-    background-color: #D5E6D1; /* Light green for Gemini messages */  
+    background-color: #d9e1d7; /* Light green for Gemini messages */  
     align-self: flex-start;  
     text-align: left;  
-}  
+    white-space: pre-wrap; /* Maintains white spaces for formatting */  
+}   
 
 #user-input {  
     width: calc(100% - 100px);  
@@ -63,3 +69,20 @@ body {
 #send-button:hover {  
     background-color: #357ABD; /* Darker blue on hover */  
 }
+
+.chat-box pre {  
+    background-color: #f0f0f0; /* Light background for code blocks */  
+    padding: 10px;  
+    border-radius: 5px;  
+    overflow-x: auto; /* Allow horizontal scrolling */  
+    white-space: pre-wrap; /* Preserve whitespace */  
+    margin: 10px 0; /* Margin around code blocks */  
+}  
+
+.chat-box code {  
+    font-family: 'Courier New', Courier, monospace; /* Use monospace for code */  
+    font-weight: bold; /* Make code bold */  
+    white-space: pre-wrap; /* Preserve whitespace */  
+}
+
+
