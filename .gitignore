@@ -1,3 +1,5 @@
 .env
 chatpage/__pycache__
 chatpage/__pycache__/
+chatbotapi/__pycache__/
+chatbotapi\__pycache__\
